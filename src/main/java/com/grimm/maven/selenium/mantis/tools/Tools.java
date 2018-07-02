@@ -4,7 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 
+/**
+ * 获取当前日期，获取文件路径等方法
+ */
 public class Tools {
+	/**
+	 * 获取当前日期
+	 */
 	public static String getCurrentDate() throws IOException {
 		int y, m, d, h, mi, s;
 		Calendar cal = Calendar.getInstance();
@@ -20,6 +26,9 @@ public class Tools {
 			return y + "/" + (m + 1) + "/" + d + " " + h + "-" + mi + "-" + s;
 	}
 
+	/**
+	 * 获取当前项目的绝对路径
+	 */
 	public static String getPath() {
 		try {
 			File directory = new File("");
