@@ -4,9 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 
-/**
- * 获取当前日期，获取文件路径等方法
- */
 public class Tools {
 	/**
 	 * 获取当前日期
