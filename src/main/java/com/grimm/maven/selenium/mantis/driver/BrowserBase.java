@@ -1,5 +1,8 @@
 package com.grimm.maven.selenium.mantis.driver;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -99,5 +102,22 @@ public class BrowserBase {
 	public void maxWindow() {
 		driver.manage().window().maximize();
 		Log.info("最大化浏览器");
+	}
+	
+	/**
+     * 获取日期,返回nMinutes后的日期
+     * @param timeFormat 时间格式
+     * @param nMinutes 延长的时间(分钟)
+     * @return nMinutes后的日期
+     */
+	public String getCurrentTime(String timeFormat, int nMinutes) {
+		String time = "";
+		long current = System.currentTimeMillis();
+		current += nMinutes * 60 * 1000;
+		Date date = new Date(current);
+		SimpleDateFormat dateFormat = new SimpleDateFormat(timeFormat);
+		time = dateFormat.format(date);
+		return time;
+
 	}
 }
