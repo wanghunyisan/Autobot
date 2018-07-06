@@ -1,5 +1,7 @@
 package com.grimm.maven.selenium.mantis.test;
 
+import java.io.IOException;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -11,8 +13,10 @@ public class Try {
 	public WebDriver driver;
 
 	@BeforeMethod
-	public void setUp() {
-		BrowserEngine browserBase = new BrowserEngine();
+	public void setUp() throws IOException {
+		BrowserEngine browserEngine = new BrowserEngine();
+		browserEngine.initConfigData();
+		driver = browserEngine.getBrowser();
 	}
 
 	@Test

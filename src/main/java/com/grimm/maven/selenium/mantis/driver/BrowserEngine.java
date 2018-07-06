@@ -19,8 +19,8 @@ public class BrowserEngine {
 		Properties p = new Properties();
 		InputStream ips = new FileInputStream(".\\resource\\config.properties");
 		p.load(ips);
-		
-//		Log.info();
+
+		// Log.info();
 		browserName = p.getProperty("browserName");
 		serverURL = p.getProperty("URL");
 		ips.close();
@@ -28,19 +28,19 @@ public class BrowserEngine {
 
 	public WebDriver getBrowser() {
 		if (browserName.equalsIgnoreCase("Chrome")) {
-			System.setProperty("webdriver.chrome.driver", "D:\\CloudStation\\driver\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "C:\\Users\\Grimm\\CloudStation\\driver\\chromedriver.exe");
 			driver = new ChromeDriver();
-//			Log.info("使用Chrome");
+			// Log.info("使用Chrome");
 			driver.manage().window().maximize();
 		} else if (browserName.equalsIgnoreCase("Firefox")) {
-			System.setProperty("webdriver.firefox.bin", "D:\\CloudStation\\driver\\geckodriver.exe");
+			System.setProperty("webdriver.firefox.bin", "C:\\Users\\Grimm\\CloudStation\\driver\\geckodriver.exe");
 			driver = new FirefoxDriver();
-//			Log.info("使用Firefox");
+			// Log.info("使用Firefox");
 			driver.manage().window().maximize();
 		} else if (browserName.equalsIgnoreCase("IE")) {
-			System.setProperty("webdriver.ie.driver", "D:\\CloudStation\\driver\\IEDriverServer.exe");
+			System.setProperty("webdriver.ie.driver", "C:\\Users\\Grimm\\CloudStation\\driver\\.exe");
 			driver = new InternetExplorerDriver();
-//			Log.info("使用IE");
+			// Log.info("使用IE");
 			driver.manage().window().maximize();
 		}
 		return driver;
@@ -52,13 +52,14 @@ public class BrowserEngine {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		Log.info("打开链接" + url);
+		// Log.info("打开链接" + url);
 	}
 
 	/**
 	 * 暂停浏览器操作
 	 *
-	 * @param time 暂停时间,单位为秒
+	 * @param time
+	 *            暂停时间,单位为秒
 	 */
 	public void pause(float time) {
 		if (time <= 0) {
@@ -73,12 +74,12 @@ public class BrowserEngine {
 
 	public void close() {
 		driver.close();
-//		Log.info("窗口" + getTitle() + "关闭");
+		// Log.info("窗口" + getTitle() + "关闭");
 	}
 
 	public void quit() {
 		driver.quit();
-//		Log.info("退出浏览器");
+		// Log.info("退出浏览器");
 	}
 
 	/**
@@ -90,6 +91,6 @@ public class BrowserEngine {
 
 	public void maxWindow() {
 		driver.manage().window().maximize();
-//		Log.info("最大化浏览器");
+		// Log.info("最大化浏览器");
 	}
 }
