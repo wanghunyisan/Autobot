@@ -21,7 +21,6 @@ public class Try {
 
 	@Test
 	public void test1() throws InterruptedException {
-		driver.get("http://www.baidu.com");
 		Thread.sleep(2000);
 	}
 

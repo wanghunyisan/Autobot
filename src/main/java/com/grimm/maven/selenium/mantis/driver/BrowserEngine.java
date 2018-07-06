@@ -10,6 +10,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
+import com.grimm.maven.selenium.mantis.tools.*;
+
 public class BrowserEngine {
 	public String browserName;
 	public String serverURL;
@@ -20,9 +22,11 @@ public class BrowserEngine {
 		InputStream ips = new FileInputStream(".\\resource\\config.properties");
 		p.load(ips);
 
-		// Log.info();
+		Logger.Output(LogType.LogTypeName.INFO, "开始从属性文件中选择浏览器");
 		browserName = p.getProperty("browserName");
+		Logger.Output(LogType.LogTypeName.INFO, "所选浏览器为：" + browserName);
 		serverURL = p.getProperty("URL");
+		Logger.Output(LogType.LogTypeName.INFO, "被测试网址为：" + serverURL);
 		ips.close();
 	}
 
@@ -30,29 +34,20 @@ public class BrowserEngine {
 		if (browserName.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver", "D:\\CloudStation\\driver\\chromedriver.exe");
 			driver = new ChromeDriver();
-			// Log.info("使用Chrome");
-			driver.manage().window().maximize();
+			Logger.Output(LogType.LogTypeName.INFO, "启动Chrome……");
 		} else if (browserName.equalsIgnoreCase("Firefox")) {
 			System.setProperty("webdriver.firefox.bin", "D:\\CloudStation\\driver\\geckodriver.exe");
 			driver = new FirefoxDriver();
-			// Log.info("使用Firefox");
-			driver.manage().window().maximize();
+			Logger.Output(LogType.LogTypeName.INFO, "启动Firefox……");
 		} else if (browserName.equalsIgnoreCase("IE")) {
 			System.setProperty("webdriver.ie.driver", "D:\\CloudStation\\driver\\IEDriverServer.exe");
 			driver = new InternetExplorerDriver();
-			// Log.info("使用IE");
-			driver.manage().window().maximize();
+			Logger.Output(LogType.LogTypeName.INFO, "启动IE……");
 		}
+		driver.get(serverURL);
+		driver.manage().window().maximize();
+		pause(5);
 		return driver;
-	}
-
-	public void open(String url) {
-		try {
-			driver.get(url);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		// Log.info("打开链接" + url);
 	}
 
 	/**
