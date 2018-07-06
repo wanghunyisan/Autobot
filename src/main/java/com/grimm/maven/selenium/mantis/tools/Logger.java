@@ -36,15 +36,4 @@ public class Logger {
 		SimpleDateFormat df = new SimpleDateFormat(format);
 		return df.format(date);
 	}
-
-	/*
-	 * public static void info(String logInfo) { setLog(); logger.info(logInfo); }
-	 * 
-	 * public static void debug(String logInfo) { setLog(); logger.debug(logInfo); }
-	 * 
-	 * public static void error(String logInfo) { setLog(); logger.error(logInfo); }
-	 * 
-	 * public static void warning(String logInfo) { setLog(); logger.warn(logInfo);
-	 * }
-	 */
 }
