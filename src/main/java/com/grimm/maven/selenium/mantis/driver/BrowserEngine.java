@@ -28,17 +28,17 @@ public class BrowserEngine {
 
 	public WebDriver getBrowser() {
 		if (browserName.equalsIgnoreCase("Chrome")) {
-			System.setProperty("webdriver.chrome.driver", "C:\\Users\\Grimm\\CloudStation\\driver\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "D:\\CloudStation\\driver\\chromedriver.exe");
 			driver = new ChromeDriver();
 			// Log.info("使用Chrome");
 			driver.manage().window().maximize();
 		} else if (browserName.equalsIgnoreCase("Firefox")) {
-			System.setProperty("webdriver.firefox.bin", "C:\\Users\\Grimm\\CloudStation\\driver\\geckodriver.exe");
+			System.setProperty("webdriver.firefox.bin", "D:\\CloudStation\\driver\\geckodriver.exe");
 			driver = new FirefoxDriver();
 			// Log.info("使用Firefox");
 			driver.manage().window().maximize();
 		} else if (browserName.equalsIgnoreCase("IE")) {
-			System.setProperty("webdriver.ie.driver", "C:\\Users\\Grimm\\CloudStation\\driver\\.exe");
+			System.setProperty("webdriver.ie.driver", "D:\\CloudStation\\driver\\IEDriverServer.exe");
 			driver = new InternetExplorerDriver();
 			// Log.info("使用IE");
 			driver.manage().window().maximize();
@@ -58,8 +58,7 @@ public class BrowserEngine {
 	/**
 	 * 暂停浏览器操作
 	 *
-	 * @param time
-	 *            暂停时间,单位为秒
+	 * @param time 暂停时间,单位为秒
 	 */
 	public void pause(float time) {
 		if (time <= 0) {
