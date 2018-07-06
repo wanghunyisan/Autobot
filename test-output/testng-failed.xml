@@ -6,6 +6,7 @@
       <class name="com.grimm.maven.selenium.mantis.test.Try">
         <methods>
           <include name="setUp"/>
+          <include name="quit"/>
           <include name="test1"/>
         </methods>
       </class> <!-- com.grimm.maven.selenium.mantis.test.Try -->
