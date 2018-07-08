@@ -25,7 +25,7 @@ public class BrowserEngine {
 		p.load(ips);
 
 		browserName = p.getProperty("browserName");
-		Logger.Output(LogType.LogTypeName.INFO, "浏览器：" + browserName);
+		Logger.Output(LogType.LogTypeName.INFO, "测试浏览器：" + browserName);
 		serverURL = p.getProperty("URL");
 		Logger.Output(LogType.LogTypeName.INFO, "测试URL：" + serverURL);
 		ips.close();
@@ -52,9 +52,10 @@ public class BrowserEngine {
 	}
 
 	/*
-	 * 关闭并推出浏览器
+	 * 关闭并退出浏览器
 	 */
 	public void tearDown() throws InterruptedException {
+		Logger.Output(LogType.LogTypeName.INFO, "关闭浏览器……");
 		driver.quit();
 		Thread.sleep(3000);
 	}
@@ -64,6 +65,7 @@ public class BrowserEngine {
 	 */
 	public void callWait(int time) {
 		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+		Logger.Output(LogType.LogTypeName.INFO, "等待" + time + "秒");
 	}
 
 	/*
