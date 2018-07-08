@@ -4,10 +4,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+//import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import com.grimm.maven.selenium.mantis.tools.*;
@@ -22,69 +24,62 @@ public class BrowserEngine {
 		InputStream ips = new FileInputStream(".\\resource\\config.properties");
 		p.load(ips);
 
-		Logger.Output(LogType.LogTypeName.INFO, "¿ªÊ¼´ÓÊôĞÔÎÄ¼şÖĞÑ¡Ôñä¯ÀÀÆ÷");
 		browserName = p.getProperty("browserName");
-		Logger.Output(LogType.LogTypeName.INFO, "ËùÑ¡ä¯ÀÀÆ÷Îª£º" + browserName);
+		Logger.Output(LogType.LogTypeName.INFO, "æµè§ˆå™¨ï¼š" + browserName);
 		serverURL = p.getProperty("URL");
-		Logger.Output(LogType.LogTypeName.INFO, "±»²âÊÔÍøÖ·Îª£º" + serverURL);
+		Logger.Output(LogType.LogTypeName.INFO, "æµ‹è¯•URLï¼š" + serverURL);
 		ips.close();
 	}
 
 	public WebDriver getBrowser() {
-		if (browserName.equalsIgnoreCase("Chrome")) {
+		if (browserName.equalsIgnoreCase("Firefox")) {
+			System.setProperty("webdriver.gecko.driver", "D:\\CloudStation\\driver\\geckodriver.exe");
+			driver = new FirefoxDriver();
+			Logger.Output(LogType.LogTypeName.INFO, "å¯åŠ¨Firefoxâ€¦â€¦");
+		} else if (browserName.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver", "D:\\CloudStation\\driver\\chromedriver.exe");
 			driver = new ChromeDriver();
-			Logger.Output(LogType.LogTypeName.INFO, "Æô¶¯Chrome¡­¡­");
-		} else if (browserName.equalsIgnoreCase("Firefox")) {
-			System.setProperty("webdriver.firefox.bin", "D:\\CloudStation\\driver\\geckodriver.exe");
-			driver = new FirefoxDriver();
-			Logger.Output(LogType.LogTypeName.INFO, "Æô¶¯Firefox¡­¡­");
+			Logger.Output(LogType.LogTypeName.INFO, "å¯åŠ¨Chromeâ€¦â€¦");
 		} else if (browserName.equalsIgnoreCase("IE")) {
 			System.setProperty("webdriver.ie.driver", "D:\\CloudStation\\driver\\IEDriverServer.exe");
 			driver = new InternetExplorerDriver();
-			Logger.Output(LogType.LogTypeName.INFO, "Æô¶¯IE¡­¡­");
+			Logger.Output(LogType.LogTypeName.INFO, "å¯åŠ¨IEâ€¦â€¦");
 		}
 		driver.get(serverURL);
 		driver.manage().window().maximize();
-		pause(5);
+		callWait(5);
 		return driver;
 	}
 
-	/**
-	 * ÔİÍ£ä¯ÀÀÆ÷²Ù×÷
-	 *
-	 * @param time ÔİÍ£Ê±¼ä,µ¥Î»ÎªÃë
+	/*
+	 * å…³é—­å¹¶æ¨å‡ºæµè§ˆå™¨
 	 */
-	public void pause(float time) {
-		if (time <= 0) {
-			return;
-		}
-		try {
-			Thread.sleep((int) time * 1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void close() {
-		driver.close();
-		// Log.info("´°¿Ú" + getTitle() + "¹Ø±Õ");
-	}
-
-	public void quit() {
+	public void tearDown() throws InterruptedException {
 		driver.quit();
-		// Log.info("ÍË³öä¯ÀÀÆ÷");
+		Thread.sleep(3000);
 	}
 
-	/**
-	 * »ñÈ¡µ±Ç°´°¿Útitle
+	/*
+	 * 
 	 */
-	public String getTitle() {
-		return driver.getTitle();
+	public void callWait(int time) {
+		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
 	}
 
-	public void maxWindow() {
-		driver.manage().window().maximize();
-		// Log.info("×î´ó»¯ä¯ÀÀÆ÷");
-	}
+	/*
+	 * private WebDriver createFireFoxDriver() {
+	 * 
+	 * WebDriver driver = null; FirefoxProfile firefoxProfile = new
+	 * FirefoxProfile();
+	 * 
+	 * firefoxProfile.setPreference("prefs.converted-to-utf8", true); // set
+	 * download folder to default folder: TestDownload
+	 * firefoxProfile.setPreference("browser.download.folderList", 2);
+	 * firefoxProfile.setPreference("browser.download.dir", ".\\TestDownload");
+	 * 
+	 * try { driver = new FirefoxDriver(firefoxProfile); } catch (Exception e) {
+	 * Logger.Output(LogType.LogTypeName.ERROR, e.getMessage());
+	 * Logger.Output(LogType.LogTypeName.ERROR,
+	 * "Failed to initilize the Firefox driver"); } return driver; }
+	 */
 }
