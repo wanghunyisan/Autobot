@@ -11,7 +11,7 @@ public class Logger {
 	public static String OutputFileName = getDateTimeByFormat(new Date(), "yyyyMMdd_HHmmss");
 	private static OutputStreamWriter outputStreamWriter;
 	private static String logFileName;
-	public static boolean LogFlag = true;//true-输出日志，false-不输出日志
+	public static boolean LogFlag = true;// true-输出日志，false-不输出日志
 
 	public Logger() {
 
@@ -20,7 +20,7 @@ public class Logger {
 	public static void WriteLog(String logEntry) {
 		//
 		try {
-			logFileName = ".\\Log" + "\\" + OutputFileName + ".log";
+			logFileName = ".\\log" + "\\" + OutputFileName + ".log";
 			if (outputStreamWriter == null) {
 				File logFile = new File(logFileName);
 				if (!logFile.exists())

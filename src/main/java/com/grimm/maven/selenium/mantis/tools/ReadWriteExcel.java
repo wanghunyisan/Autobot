@@ -61,7 +61,7 @@ public class ReadWriteExcel {
 		return result.toString();
 	}
 
-	public void xlWrite(String[][] xldata, String xlPath) throws Exception {
+	public void xlwrite(String xlPath, String[][] xldata) throws Exception {
 		XSSFWorkbook wb = new XSSFWorkbook();
 
 		XSSFSheet sheet = wb.createSheet("TESTRESULTS");
