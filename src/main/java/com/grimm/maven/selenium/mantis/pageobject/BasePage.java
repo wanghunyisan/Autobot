@@ -1,4 +1,4 @@
-package com.grimm.maven.selenium.mantis.operation;
+package com.grimm.maven.selenium.mantis.pageobject;
 
 import java.util.Iterator;
 import java.util.Set;
