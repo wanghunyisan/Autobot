@@ -6,20 +6,20 @@ public class ReadExcelExcelDemo {
 		String excelReadPath = "data/TestPlan.xlsx";
 		String excelWritePath = "data/TestPlan.xlsx";
 
-		ReadWriteExcel g = new ReadWriteExcel();
-		g.xlRead(excelReadPath, 0);
+		ReadWriteExcel rwe = new ReadWriteExcel();
+		rwe.xlRead(excelReadPath, 0);
 
-		for (int i = 0; i < g.xRows; i++) {
-			for (int j = 0; j < g.xCols; j++) {
-				System.out.println("\t" + g.xData[i][j]);
+		for (int i = 0; i < rwe.xRows; i++) {
+			for (int j = 0; j < rwe.xCols; j++) {
+				System.out.println("\t" + rwe.xData[i][j]);
 			}
 			System.out.println("");
 		}
 
-		g.xData[1][0] = "何叶";
-		g.xData[2][0] = "郝凌";
+		rwe.xData[1][0] = "row1";
+		rwe.xData[2][0] = "row2";
 
-		g.xlwrite(excelWritePath, g.xData);
+		rwe.xlwrite(excelWritePath, rwe.xData);
 
 		System.out.println("Done");
 	}
