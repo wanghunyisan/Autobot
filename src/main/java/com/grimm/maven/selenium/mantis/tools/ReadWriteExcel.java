@@ -27,7 +27,7 @@ public class ReadWriteExcel {
 		for (int i = 0; i < xRows; i++) {
 			XSSFRow row = sheet.getRow(i);
 			for (int j = 0; j < xCols; j++) {
-				XSSFCell cell = row.getCell(j); // To read value from each col in each row
+				XSSFCell cell = row.getCell(j);
 				String value = cellToString(cell);
 				xData[i][j] = value;
 			}
