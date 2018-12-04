@@ -15,11 +15,11 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import com.grimm.maven.selenium.mantis.tools.*;
 
 public class BrowserEngine {
-	public String browserName;
-	public String serverURL;
-	public WebDriver driver;
+	public static String browserName;
+	public static String serverURL;
+	public static WebDriver driver;
 
-	public void initConfigData() throws IOException {
+	public static void initConfigData() throws IOException {
 		Properties p = new Properties();
 		InputStream ips = new FileInputStream(".\\resource\\config.properties");
 		p.load(ips);
@@ -31,7 +31,7 @@ public class BrowserEngine {
 		ips.close();
 	}
 
-	public WebDriver getBrowser() {
+	public static WebDriver getBrowser() {
 		if (browserName.equalsIgnoreCase("Firefox")) {
 			System.setProperty("webdriver.gecko.driver", "D:\\CloudStation\\driver\\geckodriver.exe");
 			driver = new FirefoxDriver();
@@ -54,7 +54,7 @@ public class BrowserEngine {
 	/*
 	 * 关闭并退出浏览器
 	 */
-	public void tearDown() throws InterruptedException {
+	public static void tearDown() throws InterruptedException {
 		Logger.Output(LogType.LogTypeName.INFO, "关闭浏览器……");
 		driver.quit();
 		Thread.sleep(3000);
@@ -63,7 +63,7 @@ public class BrowserEngine {
 	/*
 	 * 
 	 */
-	public void callWait(int time) {
+	public static void callWait(int time) {
 		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
 		Logger.Output(LogType.LogTypeName.INFO, "等待" + time + "秒");
 	}

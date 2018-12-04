@@ -35,6 +35,9 @@ public class BasePage {
 		}
 	}
 
+	/*
+	 * 点击页面元素
+	 */
 	protected void click(WebElement element) {
 		try {
 			if (element.isEnabled()) {
@@ -74,16 +77,17 @@ public class BasePage {
 	/*
 	 * 获取页面的标题
 	 */
-	protected String getCurrentPageTitle() {
+	// protected String getCurrentPageTitle() {
+	public static String getCurrentPageTitle() {
 		pageTitle = driver.getTitle();
 		Logger.Output(LogType.LogTypeName.INFO, "当前页面标题：" + pageTitle);
 		return pageTitle;
 	}
 
 	/*
-	 * 获取页面的url
+	 * 获取页面的URL
 	 */
-	protected String getCurrentPageUrl() {
+	public static String getCurrentPageUrl() {
 		pageUrl = driver.getCurrentUrl();
 		Logger.Output(LogType.LogTypeName.INFO, "当前页面URL：" + pageUrl);
 		return pageUrl;

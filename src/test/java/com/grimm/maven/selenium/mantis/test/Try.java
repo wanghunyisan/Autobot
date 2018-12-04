@@ -8,24 +8,26 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.grimm.maven.selenium.mantis.driver.BrowserEngine;
+import com.grimm.maven.selenium.mantis.pageobject.BasePage;
 
 public class Try {
 	public WebDriver driver;
 
 	@BeforeClass
 	public void setUp() throws IOException {
-		BrowserEngine browserEngine = new BrowserEngine();
-		browserEngine.initConfigData();
-		driver = browserEngine.getBrowser();
+		BrowserEngine.initConfigData();
+		driver = BrowserEngine.getBrowser();
 	}
 
-	@Test(invocationCount = 10, threadPoolSize = 5)//invocationCount：调用次数，threadPoolSize：线程数
-	public void getTitle() {
-		System.out.println(driver.getTitle());
+	@Test(invocationCount = 1, threadPoolSize = 1) // invocationCount：调用次数，threadPoolSize：线程数
+	public void test1() {
+		new BasePage(driver);
+		BasePage.getCurrentPageTitle();
+		BasePage.getCurrentPageUrl();
 	}
 
 	@AfterClass
-	public void tearDown() {
-		driver.quit();
+	public void tearDown() throws InterruptedException {
+		BrowserEngine.tearDown();
 	}
 }
