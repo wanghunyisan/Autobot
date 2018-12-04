@@ -3,8 +3,8 @@ package com.grimm.maven.selenium.mantis.test;
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.grimm.maven.selenium.mantis.driver.BrowserEngine;
@@ -13,7 +13,7 @@ import com.grimm.maven.selenium.mantis.pageobject.BasePage;
 public class Try {
 	public WebDriver driver;
 
-	@BeforeClass
+	@BeforeMethod
 	public void setUp() throws IOException {
 		BrowserEngine.initConfigData();
 		driver = BrowserEngine.getBrowser();
@@ -26,7 +26,7 @@ public class Try {
 		BasePage.getCurrentPageUrl();
 	}
 
-	@AfterClass
+	@AfterMethod
 	public void tearDown() throws InterruptedException {
 		BrowserEngine.tearDown();
 	}
